@@ -1532,7 +1532,7 @@ class EPStudy:
 
         app = get_dash_app(self, bgnd=bgnd)
         webbrowser.open_new("http://127.0.0.1:8050")
-        app.run_server(debug=True, use_reloader=False)
+        app.run(debug=True, use_reloader=False)
 
     def resolve_export_folder(
             self,

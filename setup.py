@@ -38,7 +38,7 @@ URL = 'https://github.com/medunigraz/pyCEPS'
 EMAIL = 'robert.arnold@medunigraz.at'
 AUTHOR = 'Robert Arnold'
 REQUIRES_PYTHON = '>=3.8'
-VERSION = '{{VERSION_PLACEHOLDER}}'
+VERSION = '1.1.3.dev0'
 PROJECT_URLS = {
     'Github': 'https://github.com/medunigraz/pyCEPS',
     'Changelog': 'https://github.com/medunigraz/pyCEPS/blob/main/CHANGELOG.md',

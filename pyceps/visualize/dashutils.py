@@ -40,10 +40,25 @@ for cmap in data:
     vtk_colors = np.asarray(cmap['RGBPoints'])
     mpl_colors = vtk_colors.reshape((4, -1), order='F').T
     plotly_colors = []
+
     for color in mpl_colors:
-        plotly_colors.append([color[0],
-                              'rgb'+str((color[1], color[2], color[3]))]
-                             )
+        # Plotly requires ordinary Python numbers and valid CSS RGB strings.
+        position = float(color[0])
+
+        rgb = np.asarray(color[1:4], dtype=float)
+
+        # VTK color-map values are normally normalized to [0, 1],
+        # whereas CSS rgb(...) values conventionally use [0, 255].
+        if np.nanmax(rgb) <= 1.0:
+            rgb = rgb * 255.0
+
+        rgb = np.clip(np.rint(rgb), 0, 255).astype(int)
+
+        plotly_colors.append([
+            position,
+            f"rgb({rgb[0]}, {rgb[1]}, {rgb[2]})",
+        ])
+                             
     colormaps.append(plotlyColormap(cmap['Name'], plotly_colors))
 
 
